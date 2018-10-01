@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyFoodRepo Visualization</title>
+    <link href="{{ url_for('static',filename='css/main.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    {% if status == 200 %}
+        <div id='graphDiv'></div>
+    {% else %}
+        <div id='error'>Status {{ status }}: Cannot connect to the FoodRepo API</div>
+    {% endif %}
+</body>
+<footer>
+    {% if status == 200 %}
+        <script>
+            var data = {{ data|safe }}
+        </script>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    {% endif %}
+</footer>
+</html>
